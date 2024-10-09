@@ -23,7 +23,7 @@ export async function POST(req) {
         return NextResponse.json({ message: "Duplicate email",  }, { status: 409 });
  
     }
-    const hashPassword=bcrypt.hash(userData.password,10)
+    const hashPassword=await bcrypt.hash(userData.password,10)
     userData.password=hashPassword
     await User.create(userData)
     return NextResponse.json({ message: "User created" }, { status: 201 });
